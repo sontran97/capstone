@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {{csrf_field()}} //
+
+    //
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
@@ -9,8 +10,9 @@
 </head>
 <body>
 <div class="col-xs-8 col-xs-offset-2" style="margin-top:50px;">
-    <form class="form-horizontal form-row-seperated" action="{{ URL::action('MyController@store') }}"
+    <form class="form-horizontal form-row-seperated" action="{{route('nhanvien.add')}}"
     method="Post">
+        {{csrf_field()}} 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="exampleInputEmail1">ten nhan vien</label>

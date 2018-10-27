@@ -12,22 +12,22 @@
     <form class="form-horizontal form-row-seperated" action="{{ URL::action('MyController@update') }}"
           method="Post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="id" value="{{ old('id', $getnhanvienById['id'])}}">
+        <input type="hidden" name="id" value="{{ $nhanvien->id}}">
         <div class="form-group">
             <label for="exampleInputEmail1">tennv</label>
             <input type="text" class="form-control"
-                   value="{{ old('ten', $getnhanvienById['ten'])}}" name="ten">
+                   value="{{$nhanvien->ten}}" name="ten">
             <label for="exampleInputEmail1">email</label>
              <input type="text" class="form-control"
-                          value="{{ old('email', $getnhanvienById['email'])}}" name="email">
+                          value="{{$nhanvien->email}}" name="email">
         </div>
         <div class="form-group">
             <label for="gender">gender</label>
             <select name="gender" class="form-control">
-                <option value="0" <?php if($getnhanvienById['gender'] == 0) echo "selected='selected'" ?>>
+                <option value="0" {{$nhanvien->gender == 0 ? "selected":""}}  >
                     nam
                 </option>
-                <option value="1"<?php if($getnhanvienById['gender'] == 1) echo "selected='selected'" ?>>
+                <option value="1"  {{$nhanvien->gender == 1 ? "selected":""}} >
                     nu
                 </option>
             </select>

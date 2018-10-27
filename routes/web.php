@@ -27,16 +27,16 @@ use App\nhanvien;
 // });
 // Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']);
 //
-Route::get('nhanvien/create','MyController@create');
+Route::get('nhanvien/create','MyController@create')->name('nhanvien.add'); // show view
 //duong dan khi submit thong tin
-Route::post('nhanvien/create','MyController@store');
+Route::post('nhanvien/create','MyController@store')->name('nhanvien.add'); //vnhan gia tri tu client
 //
-Route::get('nhanvien','MyController@index');
+Route::get('nhanvien','MyController@index')->name('nhanvien.index');
 //duong dan den form edit user
-Route::get('nhanvien/{id}/edit','MyController@edit');
+Route::get('nhanvien/{id}/edit','MyController@edit')->name('nhanvien.edit');
 
 //duong dan khi submit edit
-Route::post('nhanvien/update','MyController@update');
+Route::post('nhanvien/{id}/update','MyController@update');
 
 //duong dan khi delete user
-Route::get('nhanvien/{id}/delete','MyController@destroy');
+Route::get('nhanvien/{id}/delete','MyController@destroy')->name('nhanvien.delete');
