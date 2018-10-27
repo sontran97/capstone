@@ -36,7 +36,7 @@ Route::get('nhanvien','MyController@index')->name('nhanvien.index');
 Route::get('nhanvien/{id}/edit','MyController@edit')->name('nhanvien.edit');
 
 //duong dan khi submit edit
-Route::post('nhanvien/{id}/update','MyController@update');
+Route::post('nhanvien/update','MyController@update')->name('nhanvien.update');
 
 //duong dan khi delete user
 Route::get('nhanvien/{id}/delete','MyController@destroy')->name('nhanvien.delete');

@@ -53,7 +53,8 @@ class MyController extends Controller
 
     public function update(Request $request,$id)
     {
-       $nhanvien = nhanvien::find($id);
+
+        $nhanvien = nhanvien::find($id);
 
 
         $nhanvien->ten        = $request->ten;
