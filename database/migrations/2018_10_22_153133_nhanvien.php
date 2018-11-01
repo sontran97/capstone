@@ -16,7 +16,7 @@ class Nhanvien extends Migration
         Schema::create('nhanvien', function (Blueprint $table) {
           $table->increments('id');
           $table->string('ten');
-          $table->string('email')->unnique();
+          $table->string('email')->unique();
           $table->string('gender');
         });
     }

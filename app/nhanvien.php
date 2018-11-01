@@ -9,5 +9,7 @@ class nhanvien extends Model
     //
     protected $table = "nhanvien";
 
+
     public $timestamps = false;
+    protected $fillable = ['body'];
 }

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 </head>
 <body>
+  @if (count($errors) > 0)
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
 <div class="col-xs-8 col-xs-offset-2" style="margin-top:50px;">
     <form class="form-horizontal form-row-seperated" action="{{route('nhanvien.update') }}"
           method="Post" >

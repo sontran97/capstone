@@ -18,6 +18,9 @@ class MyController extends Controller
     //
     //   echo $request->psw;
     // }
+    // public function postAdd(requestnv $nhanvienre){
+    // //
+    // }
     public function index()
    {
      $nhanviens = nhanvien::all();
@@ -31,6 +34,21 @@ class MyController extends Controller
     }
     public function store( Request $request)
     {
+      $request-> validate([
+        'ten'=> 'required|string|min:6',
+        'email'=> 'required|email|max:255|unique:nhanvien'
+      ],
+      [
+        'ten.required' =>'ten khong duoc bo trong',
+        'ten.string' =>'ten phai la chu',
+        'ten.min' =>'ten phai lon hon 6 ki tu',
+        'email.required' =>'email khong duoc bo trong',
+        'email.email' =>'email sai dinh dang',
+        'email.unique' =>'email da duoc su dung'
+      ]
+    );
+
+      //
       $allRequest = $request->all();
       $ten = $allRequest['ten'];
       $email = $allRequest['email'];
@@ -51,23 +69,50 @@ class MyController extends Controller
         return view('edit',compact('nhanvien'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request)
     {
 
-        $nhanvien = nhanvien::find($id);
+      $allRequest = $request->all();
+        $ten   = $allRequest['ten'];
+        $email   = $allRequest['email'];
+        $gender        = $allRequest['gender'];
+        $id     = $allRequest['id'];
 
 
-        $nhanvien->ten        = $request->ten;
-        $nhanvien->email      =  $request->email;
-        $nhanvien->gender     = $request->gender;
+        $nhanvien       = new  Nhanvien();
+        $nhanvien    = $nhanvien->find($id);
+        //
+        $request-> validate([
+        'ten'=> 'required|string|min:6',
+        'email'=> 'required|email|max:255|unique:nhanvien,email,'.$nhanvien->id
+      ],
+      [
+        'ten.required' =>'ten khong duoc bo trong',
+        'ten.string' =>'ten phai la chu',
+        'ten.min' =>'ten phai lon hon 6 ki tu',
+        'email.required' =>'email khong duoc bo trong',
+        'email.email' =>'email sai dinh dang',
+        'email.unique' =>'email da duoc su dung'
+      ]
+    );
+        //
+        $nhanvien->ten = $ten;
+        $nhanvien->email = $email;
+        $nhanvien->gender      = $gender;
         $nhanvien->save();
 
         return redirect()->route('nhanvien.index');
     }
 
     public function destroy($id)
-    {
+    { +
         nhanvien::find($id)->delete();
         return redirect()->route('nhanvien.index');
     }
+    // public function postAdd( Request $request){
+    //   $this -> Validate($request,
+    //   ["ten" => "require"],
+    //   ["ten.require 3"=> "please iput to ten"]
+    // );
+    // }
 }
