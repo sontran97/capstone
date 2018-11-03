@@ -1,12 +1,6 @@
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@extends('layouts.master')
+@section('content')
+@include('error')
     <form class="form-horizontal form-row-seperated" action="{{route('nhanvien.add')}}"
     method="Post">
         {{csrf_field()}}
@@ -28,3 +22,4 @@
 
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
+@endsection

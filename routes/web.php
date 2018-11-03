@@ -22,9 +22,9 @@ use App\nhanvien;
 // });
 //
 // //
-// Route::get('post',function(){
-//   return view('bangnv');
-// });
+Route::get('demo',function(){
+  return view('layouts.admin.master');
+});
 // Route::post('postForm',['as'=>'postForm','uses'=>'MyController@postForm']);
 //
 Route::get('nhanvien/create','MyController@create')->name('nhanvien.add'); // show view
