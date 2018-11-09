@@ -18,7 +18,15 @@ class Nhanvien extends Migration
           $table->string('ten');
           $table->string('email')->unique();
           $table->string('gender');
+          $table->integer('id_khoa')->unsigned();
+          $table->foreign('id_khoa')->references('id')->on('Khoa');
         });
+        // Schema::table('nhanvien', function ($table) {
+        //   $table->integer('id_khoa')->unsigned();
+        //
+        //   $table->foreign('id_khoa')->references('id')->on('Khoa');
+        // });
+
     }
 
     /**

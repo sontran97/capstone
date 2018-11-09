@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\nhanvien;
+use App\khoa;
 use view;
 use Illuminate\Http\Request;
 class MyController extends Controller
 {
 
 
-    // public function GetData($id)
-    // {
-    //   echo "assafafsf".$id;
-    // }
-    // public function postForm(Request $request)
-    // {
-    //   echo $request->uname.'<br>';
-    //
-    //   echo $request->psw;
-    // }
-    // public function postAdd(requestnv $nhanvienre){
-    // //
-    // }
+
     public function index()
    {
+     
      $nhanviens = nhanvien::all();
       return view("list", compact('nhanviens'));
    }
@@ -30,7 +20,8 @@ class MyController extends Controller
     public function create()
     {
       //goi trang view
-      return view("bangnv");
+      $idkhoa = Khoa::all();
+      return view("bangnv",compact('idkhoa'));
     }
     public function store( Request $request)
     {
@@ -48,16 +39,20 @@ class MyController extends Controller
       ]
     );
 
+
+      $idkhoa = Khoa::all();
       //
       $allRequest = $request->all();
       $ten = $allRequest['ten'];
       $email = $allRequest['email'];
       $gender = $allRequest['gender'];
+      $idkhoa = $allRequest['id_khoa'];
 
       $dataInsertToDatabase = array(
         'ten' => $ten,
         'email' => $email,
         'gender'=>$gender,
+        'id_khoa'=>$idkhoa,
       );
       $objnhanvien = new nhanvien();
       $objnhanvien->insert($dataInsertToDatabase);
@@ -65,17 +60,19 @@ class MyController extends Controller
     }
     public function edit($id)
     {
+        $idkhoa = Khoa::all();
         $nhanvien = nhanvien::find($id);
-        return view('edit',compact('nhanvien'));
+        return view('edit',compact('nhanvien','idkhoa'));
     }
 
     public function update(Request $request)
     {
-
+      $idkhoa = Khoa::all();
       $allRequest = $request->all();
         $ten   = $allRequest['ten'];
         $email   = $allRequest['email'];
         $gender        = $allRequest['gender'];
+        $idkhoa        = $allRequest['id_khoa'];
         $id     = $allRequest['id'];
 
 
@@ -99,6 +96,7 @@ class MyController extends Controller
         $nhanvien->ten = $ten;
         $nhanvien->email = $email;
         $nhanvien->gender      = $gender;
+        $nhanvien->id_khoa      = $idkhoa;
         $nhanvien->save();
 
         return redirect()->route('nhanvien.index');

@@ -19,6 +19,16 @@
                 <option value="1">nu</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="id_khoa">id_khoa</label>
+            <select name="id_khoa" class="form-control">
+                <option value="0">chon khoa</option>
+                @foreach ($idkhoa as $khoa)
+                  <option value="{{$khoa->id}}">{{$khoa->ten}}</option>
+                @endforeach
+
+            </select>
+        </div>
 
         <button type="submit" class="btn btn-default">Submit</button>
     </form>

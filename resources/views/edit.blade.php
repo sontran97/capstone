@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-   //
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
-</head>
-<body>
-  @if (count($errors) > 0)
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-  @endif
+@extends('layouts.master')
+@section('content')
+@include('error')
 <div class="col-xs-8 col-xs-offset-2" style="margin-top:50px;">
     <form class="form-horizontal form-row-seperated" action="{{route('nhanvien.update') }}"
           method="Post" >
@@ -42,9 +26,19 @@
                 </option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="id_khoa">id_khoa</label>
+            <select name="id_khoa" class="form-control">
+                <option value="0">chon khoa</option>
+                @foreach ($idkhoa as $khoa)
+                  <option value="{{$khoa->id}}" {{$khoa->id == $nhanvien->id_khoa ? 'selected':''}} >{{$khoa->ten}}</option>
+                @endforeach
+
+            </select>
+        </div>
 
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>
-</body>
-</html>
+
+@endsection

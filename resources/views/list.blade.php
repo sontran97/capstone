@@ -9,14 +9,16 @@
        <td>ten</td>
        <td>email</td>
        <td>gender</td>
+       <td>Khoa</td>
        <td>Action</td>
    </tr>
    <?php foreach($nhanviens as $nhanvien):  ?>
       <tr>
           <td> <?php echo $nhanvien['id']; ?> </td>
           <td> <?php echo $nhanvien['ten']; ?></td>
-          <td> <?php echo $nhanvien['email']; ?></td>
-          <td> <?php if($nhanvien['gender'] == 0 ){ echo "nam"; }else {echo "nu";}  ?> </td>
+          <td> {{$nhanvien->email}}</td>
+          <td> {{$nhanvien->gender == 1 ? "Nam":"Nu"}} </td>
+          <td> {{$nhanvien->khoa->ten}}</td>
           <td>
               <a href='{{route('nhanvien.edit', $nhanvien['id'])}}'> Edit</a>
               <a href='{{route('nhanvien.delete', $nhanvien['id'])}}'> Delete</a>

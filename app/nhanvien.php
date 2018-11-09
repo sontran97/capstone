@@ -12,4 +12,9 @@ class nhanvien extends Model
 
     public $timestamps = false;
     protected $fillable = ['body'];
+
+    public function khoa()
+    {
+      return $this->belongsTo('App\khoa','id_khoa','id');
+    }
 }
